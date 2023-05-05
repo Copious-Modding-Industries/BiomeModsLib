@@ -5,21 +5,22 @@ local function BMLToFile()
     local str = ModTextFileGetContent("data/scripts/biome_modifiers.lua")
     if str:match("BML APPEND DONE") == nil then
         local s1, s2 = str:find([=[biome_modifiers =]=])
-        local s3, s4 = str:find([=[--[[-- dry - fire spreads faster than usually, fire demons spawn
-            -- bouncy - projectiles and physics bodies bounce from surfaces
-            -- corrupted - corruption grows everywhere. corruption = some sort of easily destructible static material
-            -- toxic - pools of toxic sludge, toxic rock everywhere
-            -- vulcanous - lava, lava rock everywhere
-            -- haunted - ghost crystals spawn
-            -- rat infested - rats spawn everywhere
-            -- worm infested - more worm spawn than usually
-            -- alchemic - humanoid enemies drop random potions on death
-            -- peaceful - enemies don't attack unless projectile spells are used
-            -- portal upwards - a box can be found that spawns a portal when kicked
-            -- portal downwards - a box can be found that spawns a portal when kicked
-            -- more based on various perks?
-            ]]--
-        }]=])
+        local s3, s4 = str:find(
+ [=[--[[-- dry - fire spreads faster than usually, fire demons spawn
+    -- bouncy - projectiles and physics bodies bounce from surfaces
+    -- corrupted - corruption grows everywhere. corruption = some sort of easily destructible static material
+    -- toxic - pools of toxic sludge, toxic rock everywhere
+    -- vulcanous - lava, lava rock everywhere
+    -- haunted - ghost crystals spawn
+    -- rat infested - rats spawn everywhere
+    -- worm infested - more worm spawn than usually
+    -- alchemic - humanoid enemies drop random potions on death
+    -- peaceful - enemies don't attack unless projectile spells are used
+    -- portal upwards - a box can be found that spawns a portal when kicked
+    -- portal downwards - a box can be found that spawns a portal when kicked
+    -- more based on various perks?
+    ]]--
+}]=])
         ModTextFileSetContent("data/shared/biome_modifiers.lua", str:sub(s1, s4) .. [[
         return biome_modifiers]])
         ModTextFileSetContent("data/scripts/biome_modifiers.lua", 
