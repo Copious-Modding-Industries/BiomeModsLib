@@ -2,7 +2,7 @@
 --- ***
 ---@return string path The new path for the biome modifiers file
 local function BMLToFile()
-    local str = ModTextFileGetContent("data/scripts/biome_modifiers.lua")
+    local str = ModTextFileGetContent("data/scripts/biome_modifiers.lua"):gsub("\r\n","\n")
     if str:match("BML APPEND DONE") == nil then
         local s1, s2 = str:find([=[biome_modifiers =]=])
         local s3, s4 = str:find(
@@ -22,9 +22,8 @@ local function BMLToFile()
     ]]--
 }]=])
         ModTextFileSetContent("data/shared/biome_modifiers.lua", str:sub(s1, s4) .. [[
-        return biome_modifiers]])
-        ModTextFileSetContent("data/scripts/biome_modifiers.lua", 
-        table.concat{str:sub(1, s1-1), [[biome_modifiers = dofile_once("data/shared/biome_modifiers.lua")]], str:sub(s4+1, -1), [=[-- [[BML APPEND DONE]] ]=]})
+return biome_modifiers]])
+        ModTextFileSetContent("data/scripts/biome_modifiers.lua", table.concat{str:sub(1, s1-1), [[biome_modifiers = dofile_once("data/shared/biome_modifiers.lua")]], str:sub(s4+1, -1), [=[-- [[BML APPEND DONE]] ]=]})
     end
     return "data/shared/biome_modifiers.lua"
 end
