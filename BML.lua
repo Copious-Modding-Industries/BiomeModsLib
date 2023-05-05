@@ -3,7 +3,7 @@
 ---@return string path The new path for the biome modifiers file
 local function BMLToFile()
     local str = ModTextFileGetContent("data/scripts/biome_modifiers.lua")
-    if str:match("BML APPEND DONE") ~= nil then
+    if str:match("BML APPEND DONE") == nil then
         local s1, s2 = str:find([=[biome_modifiers =]=])
         local s3, s4 = str:find([=[--[[-- dry - fire spreads faster than usually, fire demons spawn
             -- bouncy - projectiles and physics bodies bounce from surfaces
